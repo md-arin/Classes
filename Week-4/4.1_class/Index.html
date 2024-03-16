@@ -1,0 +1,48 @@
+<html>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        
+
+        async function populateDiv() {
+            const a = document.getElementById("firstNumber").value;
+            const b = document.getElementById("secondNumber").value;
+            const sumElement = document.getElementById("finalSum")
+
+            let response = await fetch('http://localhost:5000/calculatesum?a='+ a + '&b=' + b)
+            let data = await response.json();
+            const sum = data.sum;
+            
+            sumElement.innerHTML = "The sum of the two number is: " + sum; 
+           
+        }
+
+        async function calculateInterest(){
+
+            const p = document.getElementById("principle").value;
+            const t = document.getElementById("time").value;
+            const r = document.getElementById("rate").value;
+            const element = document.getElementById("finalInterest");
+
+            const response =  await fetch("http://localhost:5000/interest?p="+ p +"&t="+ t +"&r="+r)
+            const data = await response.json();
+            console.log(data)
+
+            element.innerHTML = "Calculated interest is: " + data.interest;
+        }
+    </script>
+    <body>
+        <div class="sum box">
+            <input id="firstNumber" type="text" placeholder="First number"></input> <br></br>
+            <input id="secondNumber" type="text" placeholder="Second number"></input> <br></br>
+            <button onclick="populateDiv()">Calculate sum</button> <br></br>
+            <div id="finalSum"></div>
+        </div>
+        <div class="interest box">
+            <input id="principle" type="text" placeholder="Principle Amount"></input> <br></br>
+            <input id="time" type="text" placeholder="Time"></input> <br></br>
+            <input id="rate" type="text" placeholder="Rate"></input> <br></br>
+            <button onclick="calculateInterest()">Calculate Interest</button> <br></br>
+            <div id="finalInterest"></div>
+        </div>
+    </body>
+</html>

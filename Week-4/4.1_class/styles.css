@@ -1,0 +1,11 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.box{
+    height: 140px;
+    margin: 50px;
+    padding: 50px;
+    border: 5px solid red;
+}
